@@ -41,7 +41,6 @@ import { BadgeComponent, statusToTone } from '../../shared/badge/badge.component
 import { StatCardComponent } from '../../shared/stat-card/stat-card.component';
 import { EmptyStateComponent } from '../../shared/empty-state/empty-state.component';
 import { ConfirmDialogComponent } from '../../shared/confirm-dialog/confirm-dialog.component';
-import { UsageGuideComponent } from '../../shared/usage-guide/usage-guide.component';
 import { KpiSummary } from '../../core/models/activity.model';
 
 interface CategoryNav {
@@ -146,7 +145,6 @@ interface ComplexRow {
     BadgeComponent,
     StatCardComponent,
     EmptyStateComponent,
-    UsageGuideComponent,
   ],
   template: `
     <div class="cl">
@@ -177,15 +175,7 @@ interface ComplexRow {
                 <button mat-stroked-button type="button">Cancel</button>
                 <button mat-flat-button type="button" disabled>Disabled</button>
                 <button mat-button type="button">Text button</button>
-              </div>
-              <app-usage-guide
-                useWhen="A single primary action per view (flat/raised), or secondary/tertiary actions (stroked/text) alongside it."
-                insteadUse="Choosing between mutually exclusive options — use a Button toggle group instead of several buttons."
-                tip="Keep exactly one flat/primary button per section so the main action stays obvious."
-                pitfall="Don't style more than one button as 'primary' in the same row — it kills the visual hierarchy."
-                [snippet]="snippetButtons"
-              ></app-usage-guide>
-            </div>
+              </div>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">2. Icon buttons</p>
@@ -342,15 +332,7 @@ interface ComplexRow {
                   <mat-option value="Daniel Cho">Daniel Cho</mat-option>
                   <mat-option value="Maria Alvarez">Maria Alvarez</mat-option>
                 </mat-autocomplete>
-              </mat-form-field>
-              <app-usage-guide
-                useWhen="Select for a short, fixed list (roughly under 15 options) where users pick from what's already shown."
-                insteadUse="Autocomplete for long or dynamic lists — customers, owners, tags — where typing narrows results faster than scrolling."
-                tip="Give Autocomplete a sensible unfiltered default list so it's still useful before the user types anything."
-                pitfall="Don't use Select for a searchable list of 50+ items — it forces endless scrolling with no way to filter."
-                [snippet]="snippetAutocomplete"
-              ></app-usage-guide>
-            </div>
+              </mat-form-field>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">14. Checkbox</p>
@@ -377,15 +359,7 @@ interface ComplexRow {
                 <mat-slide-toggle [checked]="true">Email alerts</mat-slide-toggle>
                 <mat-slide-toggle [checked]="false">SMS alerts</mat-slide-toggle>
                 <mat-slide-toggle [checked]="true" disabled>Locked</mat-slide-toggle>
-              </div>
-              <app-usage-guide
-                useWhen="Checkbox for independent multi-select choices; Radio group for one choice among 2–5 visible options; Slide toggle for a setting that takes effect immediately."
-                insteadUse="More than ~5 mutually exclusive options — use Select instead of a radio group."
-                tip="Slide toggle changes should apply right away with no separate Save step — that's what makes it feel like a toggle, not a form field."
-                pitfall="Don't use a slide toggle for something that needs explicit confirmation before it takes effect — use a checkbox plus a Save action."
-                [snippet]="snippetSelectionControls"
-              ></app-usage-guide>
-            </div>
+              </div>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">17. Slider</p>
@@ -446,15 +420,7 @@ interface ComplexRow {
                 <mat-chip-option selected>active</mat-chip-option>
                 <mat-chip-option>at-risk</mat-chip-option>
                 <mat-chip-option>onboarding</mat-chip-option>
-              </mat-chip-listbox>
-              <app-usage-guide
-                useWhen="Action chips for quick one-tap commands attached to a record (email/call); filter chip options for toggling multi-select filters in a toolbar."
-                insteadUse="Representing a record's state — use a Status badge instead of a chip, and use Slide toggle for a single binary setting."
-                tip="Filter chips should visually show selected vs. unselected state clearly — rely on mat-chip-option's built-in selected styling rather than custom colors."
-                pitfall="Don't use chips as the only way to trigger a destructive action (delete/archive) — pair with a confirm dialog."
-                [snippet]="snippetChips"
-              ></app-usage-guide>
-            </div>
+              </mat-chip-listbox>            </div>
           </div>
         </mat-tab>
 
@@ -529,15 +495,7 @@ interface ComplexRow {
                   <span matListItemTitle>Daniel Cho</span>
                   <span matListItemLine>CSM</span>
                 </a>
-              </mat-nav-list>
-              <app-usage-guide
-                useWhen="Card for a self-contained summary with visual weight (KPI, account snapshot) that may carry its own actions; List for a dense, scannable sequence of similar items."
-                insteadUse="A page full of near-identical rows — wrapping each in its own Card adds noise; use a plain List or Table instead."
-                tip="Reserve cards for content that deserves a visual boundary — dashboards, summaries, single-record previews."
-                pitfall="Don't nest a card inside a list item 'for emphasis' — it usually just adds unnecessary padding and borders."
-                [snippet]="snippetCardList"
-              ></app-usage-guide>
-            </div>
+              </mat-nav-list>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">26. Grid list</p>
@@ -545,15 +503,7 @@ interface ComplexRow {
                 <mat-grid-tile>Open</mat-grid-tile>
                 <mat-grid-tile>Won</mat-grid-tile>
                 <mat-grid-tile>Lost</mat-grid-tile>
-              </mat-grid-list>
-              <app-usage-guide
-                useWhen="Table for comparing structured records across multiple attributes/columns (accounts, deals); Grid list for a compact, uniform visual grid where layout matters more than comparison."
-                insteadUse="Data that needs sorting or column-by-column comparison — use a Table instead of a grid list."
-                tip="Keep grid list tiles the same visual weight — it works best for evenly-sized summary tiles, not variable-length content."
-                pitfall="Don't use a grid list when users need to sort or scan a specific column — that's a Table's job."
-                [snippet]="snippetTable"
-              ></app-usage-guide>
-            </div>
+              </mat-grid-list>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">27. Divider</p>
@@ -598,15 +548,7 @@ interface ComplexRow {
                 <button mat-icon-button matBadge="•" matBadgeColor="accent" matBadgeSize="small" type="button" aria-label="Messages">
                   <mat-icon>mail</mat-icon>
                 </button>
-              </div>
-              <app-usage-guide
-                useWhen="Status badge (app-badge) labels a record's state in tables/cards; Notification badge (matBadge) overlays a count or dot on an icon to flag unread items."
-                insteadUse="A clickable filter or action — use a Chip or Button instead of a badge, which is a passive label, not an interactive control."
-                tip="Keep notification badge numbers accurate and low-friction to clear — stale counts train users to ignore them."
-                pitfall="Don't use a notification badge to show static status text (e.g. 'active') — that's what Status badge is for."
-                [snippet]="snippetBadges"
-              ></app-usage-guide>
-            </div>
+              </div>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">32. Expansion panel</p>
@@ -741,16 +683,7 @@ interface ComplexRow {
                   <button mat-menu-item type="button"><mat-icon>edit</mat-icon> Edit</button>
                   <button mat-menu-item type="button" (click)="archiveRow(row)"><mat-icon>archive</mat-icon> Archive</button>
                 </ng-template>
-              </mat-menu>
-
-              <app-usage-guide
-                useWhen="A real dataset the user needs to scan, sort, search, and act on in bulk — account lists, deal pipelines, activity logs."
-                insteadUse="A handful of static rows with nothing to sort or filter — the plain Table demo above is lighter weight for that."
-                tip="Wire MatTableDataSource's sort/paginator in ngAfterViewInit, and call dataSource.paginator?.firstPage() whenever the filter changes so users don't land on an empty page."
-                pitfall="Don't skip the empty state for 'no results after filtering' — an unexplained blank table reads as broken, not empty."
-                [snippet]="snippetDataTable"
-              ></app-usage-guide>
-            </div>
+              </mat-menu>            </div>
           </div>
         </mat-tab>
 
@@ -788,15 +721,7 @@ interface ComplexRow {
                   <p class="cl__card-copy cl__tab-pad">Step 3 content.</p>
                   <button mat-button matStepperPrevious type="button">Back</button>
                 </mat-step>
-              </mat-stepper>
-              <app-usage-guide
-                useWhen="Tabs to switch between independent views of the same object (Overview/Activity/Files); Button toggle group to pick one value from a short set that filters the same view; Stepper to walk through an ordered, multi-step process."
-                insteadUse="A strictly sequential flow where steps must happen in order — use a Stepper, not Tabs, so users can't skip required steps."
-                tip="Only use a Stepper when steps genuinely depend on each other — otherwise Tabs give users more freedom to jump around."
-                pitfall="Don't use Tabs for a checkout- or wizard-style flow — users can land on step 3 without completing step 1."
-                [snippet]="snippetNavigation"
-              ></app-usage-guide>
-            </div>
+              </mat-stepper>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">36. Toolbar</p>
@@ -876,27 +801,11 @@ interface ComplexRow {
               <div class="demo-row">
                 <mat-progress-spinner mode="determinate" [value]="70" diameter="40"></mat-progress-spinner>
                 <mat-progress-spinner mode="indeterminate" diameter="40"></mat-progress-spinner>
-              </div>
-              <app-usage-guide
-                useWhen="Progress bar for a linear, page/section-level operation — especially when you can show a determinate percentage (upload, sync); Progress spinner for a smaller, localized loading state (a button, a card, a dialog)."
-                insteadUse="An operation with no meaningful percentage and no fixed container — a full-page indeterminate bar at the very top can work better than a centered spinner."
-                tip="Pair long-running indeterminate progress with status text ('Syncing 3 of 12 records...') so it doesn't feel stuck."
-                pitfall="Don't show a spinner with zero context for anything that might take more than a couple of seconds."
-                [snippet]="snippetProgress"
-              ></app-usage-guide>
-            </div>
+              </div>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">43. Tooltip</p>
-              <button mat-stroked-button type="button" matTooltip="Syncs every 15 minutes">Sync status</button>
-              <app-usage-guide
-                useWhen="Supplemental, non-essential context on icon-only controls or truncated text."
-                insteadUse="Information the user needs to complete a task — put it inline (a hint or label) instead, since tooltips aren't reliably discoverable on touch devices."
-                tip="Keep tooltip text to a few words — if it needs a full sentence, it probably belongs in the UI itself."
-                pitfall="Never put an error message only in a tooltip — use inline validation so it's visible without hovering."
-                [snippet]="snippetTooltip"
-              ></app-usage-guide>
-            </div>
+              <button mat-stroked-button type="button" matTooltip="Syncs every 15 minutes">Sync status</button>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">44. Banners</p>
@@ -936,15 +845,7 @@ interface ComplexRow {
               <p class="ds__group-label">49. Snackbar</p>
               <button mat-stroked-button type="button" (click)="openSnack()">
                 <mat-icon>notifications</mat-icon> Trigger snackbar
-              </button>
-              <app-usage-guide
-                useWhen="Snackbar for a brief, transient confirmation of an action just taken (auto-dismisses); Banner for a persistent, page-level message that stays until resolved; Inline validation for a specific field's error, shown next to that field."
-                insteadUse="Anything that requires the user's attention or action — a snackbar disappears on its own, so use a Banner or inline error instead."
-                tip="Give destructive actions an 'Undo' action in the snackbar rather than a separate confirm dialog when it's easily reversible."
-                pitfall="Don't rely on a snackbar to communicate an error the user must fix — it will vanish before they act on it."
-                [snippet]="snippetFeedback"
-              ></app-usage-guide>
-            </div>
+              </button>            </div>
           </div>
         </mat-tab>
 
@@ -962,15 +863,7 @@ interface ComplexRow {
               <p class="ds__group-label">51. Bottom sheet</p>
               <button mat-stroked-button type="button" (click)="openBottomSheet()">
                 <mat-icon>vertical_align_bottom</mat-icon> Open bottom sheet
-              </button>
-              <app-usage-guide
-                useWhen="Dialog for a focused decision that needs a clear confirm/cancel (create, delete, confirm); Bottom sheet for a lightweight list of quick actions or options."
-                insteadUse="A simple list of 2–4 action links — a bottom sheet is lighter-weight than a full dialog for that case."
-                tip="Reserve dialogs for anything with form input or a destructive confirmation — they demand full attention by design."
-                pitfall="Don't use a bottom sheet for anything requiring validation or multi-field input — that belongs in a Dialog."
-                [snippet]="snippetOverlay"
-              ></app-usage-guide>
-            </div>
+              </button>            </div>
 
             <div class="component-block">
               <p class="ds__group-label">52. Row kebab menu</p>
@@ -984,15 +877,7 @@ interface ComplexRow {
                   <button mat-menu-item type="button"><mat-icon>edit</mat-icon> Edit</button>
                   <button mat-menu-item type="button"><mat-icon>archive</mat-icon> Archive</button>
                 </mat-menu>
-              </div>
-              <app-usage-guide
-                useWhen="Menu attached to a visible labeled button for page/section-level actions; the ⋮ row kebab menu for per-row actions in a dense table or list where a labeled button would take too much space."
-                insteadUse="A single, primary action for the whole page — keep that as a visible button, not tucked inside a menu."
-                tip="Order menu items by frequency of use, and put destructive actions (delete/archive) at the bottom, visually separated."
-                pitfall="Don't hide the one thing most users came to do behind a kebab menu — if it's the primary action, make it a visible button."
-                [snippet]="snippetMenu"
-              ></app-usage-guide>
-            </div>
+              </div>            </div>
           </div>
         </mat-tab>
       </mat-tab-group>
