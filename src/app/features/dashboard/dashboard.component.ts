@@ -1,9 +1,12 @@
 import { Component, inject } from '@angular/core';
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { DatePipe, DecimalPipe, CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatChipsModule } from '@angular/material/chips';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { StatCardComponent } from '../../shared/stat-card/stat-card.component';
 import { BadgeComponent, statusToTone } from '../../shared/badge/badge.component';
@@ -13,11 +16,15 @@ import { BadgeComponent, statusToTone } from '../../shared/badge/badge.component
   standalone: true,
   imports: [
     RouterLink,
+    CommonModule,
     DatePipe,
     DecimalPipe,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
+    MatProgressBarModule,
+    MatChipsModule,
     StatCardComponent,
     BadgeComponent,
   ],
@@ -79,12 +86,13 @@ import { BadgeComponent, statusToTone } from '../../shared/badge/badge.component
                 </li>
               }
             </ul>
+            <a routerLink="/activities" class="panel__view-all">View all activities <mat-icon>arrow_forward</mat-icon></a>
           </mat-card-content>
         </mat-card>
 
         <mat-card class="panel panel--tasks" appearance="outlined" aria-labelledby="tasks-heading">
           <mat-card-content>
-            <h2 id="tasks-heading">Tasks due this week</h2>
+            <h2 id="tasks-heading">Upcoming tasks</h2>
             <ul class="task-list">
               @for (task of dashboardService.tasks(); track task.id) {
                 <li class="task-list__item" [class.task-list__item--done]="task.done">
@@ -99,6 +107,57 @@ import { BadgeComponent, statusToTone } from '../../shared/badge/badge.component
                 </li>
               }
             </ul>
+            <a routerLink="/tasks" class="panel__view-all">View all tasks <mat-icon>arrow_forward</mat-icon></a>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="dashboard__secondary-grid">
+        <mat-card class="panel panel--team-performance" appearance="outlined" aria-labelledby="team-heading">
+          <mat-card-content>
+            <div class="panel__header">
+              <h2 id="team-heading">Team performance</h2>
+              <span class="panel__period">This month</span>
+            </div>
+            <table mat-table [dataSource]="teamPerformanceData" class="team-table">
+              <!-- Name Column -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef>Team member</th>
+                <td mat-cell *matCellDef="let element" class="team-table__name">
+                  <span class="team-table__avatar">{{ element.initials }}</span>
+                  {{ element.name }}
+                </td>
+              </ng-container>
+
+              <!-- Deals Column -->
+              <ng-container matColumnDef="deals">
+                <th mat-header-cell *matHeaderCellDef>Deals</th>
+                <td mat-cell *matCellDef="let element">{{ element.deals }}</td>
+              </ng-container>
+
+              <!-- Revenue Column -->
+              <ng-container matColumnDef="revenue">
+                <th mat-header-cell *matHeaderCellDef>Revenue</th>
+                <td mat-cell *matCellDef="let element">{{ element.revenue | currency }}</td>
+              </ng-container>
+
+              <!-- Performance Column -->
+              <ng-container matColumnDef="performance">
+                <th mat-header-cell *matHeaderCellDef>Achievement</th>
+                <td mat-cell *matCellDef="let element">
+                  <div class="team-table__performance">
+                    <mat-progress-bar mode="determinate" [value]="element.performance"></mat-progress-bar>
+                    <span class="team-table__percentage" [style.color]="element.performance >= 100 ? 'var(--color-success)' : 'var(--text-secondary)'">
+                      {{ element.performance }}%
+                    </span>
+                  </div>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="['name', 'deals', 'revenue', 'performance']"></tr>
+              <tr mat-row *matRowDef="let row; columns: ['name', 'deals', 'revenue', 'performance'];"></tr>
+            </table>
+            <a routerLink="/reports" class="panel__view-all">View full report <mat-icon>arrow_forward</mat-icon></a>
           </mat-card-content>
         </mat-card>
       </div>
@@ -147,15 +206,46 @@ import { BadgeComponent, statusToTone } from '../../shared/badge/badge.component
         grid-template-columns: 1.4fr 1fr 1fr;
         gap: var(--space-4);
         align-items: start;
+        margin-bottom: var(--space-6);
       }
       @media (max-width: 1100px) {
         .dashboard__grid { grid-template-columns: 1fr; }
+      }
+
+      .dashboard__secondary-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
       }
 
       .panel h2 {
         font-size: var(--text-md);
         margin-bottom: var(--space-4);
       }
+      .panel__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--space-4);
+      }
+      .panel__period {
+        font-size: var(--text-xs);
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+      .panel__view-all {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        margin-top: var(--space-3);
+        color: var(--color-blue-600);
+        text-decoration: none;
+        font-size: var(--text-sm);
+        font-weight: 600;
+      }
+      .panel__view-all:hover { color: var(--color-blue-700); }
+      .panel__view-all mat-icon { font-size: 16px; width: 16px; height: 16px; }
 
       .funnel { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
       .funnel__row { display: grid; grid-template-columns: 120px 1fr auto; align-items: center; gap: var(--space-3); }
@@ -184,12 +274,34 @@ import { BadgeComponent, statusToTone } from '../../shared/badge/badge.component
       .task-list__title { font-size: var(--text-sm); color: var(--text-primary); }
       .task-list__meta { font-size: var(--text-xs); color: var(--text-tertiary); margin-top: 2px; }
       .task-list__item input[type='checkbox'] { margin-top: 3px; accent-color: var(--color-blue-600); }
+
+      .team-table { width: 100%; }
+      .team-table__name { display: flex; align-items: center; gap: var(--space-2); }
+      .team-table__avatar {
+        display: flex; align-items: center; justify-content: center;
+        width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+        background: var(--color-info-bg); color: var(--color-blue-600);
+        font-size: var(--text-xs); font-weight: 700;
+      }
+      .team-table__performance {
+        display: flex; align-items: center; gap: var(--space-2);
+      }
+      .team-table__performance mat-progress-bar { flex: 1; }
+      .team-table__percentage { font-size: var(--text-xs); font-weight: 600; min-width: 32px; text-align: right; }
     `,
   ],
 })
 export class DashboardComponent {
   readonly dashboardService = inject(DashboardService);
   readonly statusToTone = statusToTone;
+
+  // Team performance data
+  readonly teamPerformanceData = [
+    { name: 'Vijay Gaikwad', initials: 'VG', deals: 12, revenue: 245000, performance: 120 },
+    { name: 'John Michael', initials: 'JM', deals: 8, revenue: 180000, performance: 90 },
+    { name: 'Laura Smith', initials: 'LS', deals: 6, revenue: 135000, performance: 75 },
+    { name: 'Mihir Patel', initials: 'MP', deals: 4, revenue: 95000, performance: 60 },
+  ];
 
   maxFunnelValue(): number {
     return Math.max(...this.dashboardService.funnel().map((f) => f.value));
