@@ -1,0 +1,228 @@
+@use '@angular/material' as mat;
+
+// ---------------------------------------------------------------------------
+// Enterprise CRM — global styles
+// Visual source of truth is the GiveSmart "Familiar UI" design system
+// (see src/app/theme/_tokens.scss). Angular Material is still initialized
+// here to drive component structure/behavior/a11y (table, tabs, paginator,
+// chips, sidenav, ripples, focus handling) — its own generated M3 palette is
+// just a structural seed, not the visual truth. The "Material chrome bridge"
+// section below re-points Material's visible chrome (button fills, chip
+// shape, card shape, tab indicator, progress bar, paginator text) at our
+// design tokens so it reads as the GiveSmart system rather than stock M3.
+// ---------------------------------------------------------------------------
+
+@include mat.core();
+
+$app-light-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$blue-palette,
+    tertiary: mat.$violet-palette,
+  ),
+  typography: (
+    brand-family: 'Inter',
+    plain-family: 'Inter',
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+$app-dark-theme: mat.define-theme((
+  color: (
+    theme-type: dark,
+    primary: mat.$blue-palette,
+    tertiary: mat.$violet-palette,
+  ),
+  typography: (
+    brand-family: 'Inter',
+    plain-family: 'Inter',
+  ),
+  density: (
+    scale: 0,
+  ),
+));
+
+html {
+  @include mat.all-component-themes($app-light-theme);
+}
+
+html[data-theme='dark'] {
+  @include mat.all-component-themes($app-dark-theme);
+}
+
+@import './app/theme/tokens';
+
+// ---------------------------------------------------------------------------
+// Material chrome bridge — redirect Material's own component tokens at the
+// GiveSmart design tokens above, so buttons/chips/cards/tabs/progress/
+// paginator match the reference system instead of the stock M3 blue theme.
+// ---------------------------------------------------------------------------
+html {
+  // Buttons — GiveSmart primary CTAs are pill-shaped and navy, not stock blue
+  --mdc-filled-button-container-color: var(--color-navy-700);
+  --mdc-filled-button-label-text-color: #fff;
+  --mdc-filled-button-container-shape: var(--radius-xl);
+  --mdc-outlined-button-container-shape: var(--radius-xl);
+  --mdc-outlined-button-outline-color: var(--border-default);
+  --mdc-outlined-button-label-text-color: var(--color-navy-700);
+  --mdc-text-button-container-shape: var(--radius-xl);
+  --mat-icon-button-state-layer-color: var(--text-secondary);
+
+  // Chips — full pill radius per the reference. Label uses --text-on-tint
+  // rather than --color-blue-600 directly: blue-600 only clears 3.9:1 on the
+  // blue-100 fill, short of the 4.5:1 required for normal-size text.
+  --mdc-chip-container-shape-radius: var(--radius-full);
+  --mdc-chip-elevated-selected-container-color: var(--color-blue-100);
+  --mdc-chip-label-text-color: var(--text-on-tint);
+  --mdc-chip-container-height: 36px; // slightly taller than the 32px default for a more comfortable touch target
+
+  // Cards
+  --mdc-elevated-card-container-shape: var(--radius-md);
+  --mdc-outlined-card-container-shape: var(--radius-md);
+  --mdc-outlined-card-outline-color: var(--border-subtle);
+  --mdc-elevated-card-container-color: var(--surface-raised);
+  --mdc-outlined-card-container-color: var(--surface-raised);
+
+  // Tabs — brand blue indicator instead of stock M3 blue
+  --mat-tab-header-active-indicator-color: var(--color-blue-600);
+  --mat-tab-header-active-label-text-color: var(--color-blue-600);
+  --mat-tab-header-active-hover-label-text-color: var(--color-blue-600);
+  --mat-tab-header-active-focus-label-text-color: var(--color-blue-600);
+  --mat-tab-header-active-ripple-color: var(--color-blue-100);
+  --mat-tab-header-inactive-label-text-color: var(--text-secondary);
+  --mat-tab-header-divider-color: var(--border-subtle);
+
+  // Progress bar / paginator
+  --mdc-linear-progress-active-indicator-color: var(--color-blue-600);
+  --mdc-linear-progress-track-color: var(--color-blue-100);
+  --mat-paginator-container-background-color: transparent;
+  --mat-paginator-container-text-color: var(--text-secondary);
+  --mat-paginator-enabled-icon-color: var(--text-secondary);
+
+  // Inputs (mat-form-field appearance="outline") — the stock M3 theme was
+  // leaking its saturated blue/violet primary into the outline & focus
+  // ring; GiveSmart specifies a neutral outline with a soft blue-500 focus
+  // border (see .ds-input in the reference) and an 8px radius.
+  --mdc-outlined-text-field-outline-color: var(--border-default);
+  --mdc-outlined-text-field-hover-outline-color: var(--color-blue-500);
+  --mdc-outlined-text-field-focus-outline-color: var(--color-blue-500);
+  --mdc-outlined-text-field-focus-outline-width: 1.5px;
+  --mdc-outlined-text-field-container-shape: var(--radius-sm);
+  --mdc-outlined-text-field-label-text-color: var(--text-secondary);
+  --mdc-outlined-text-field-hover-label-text-color: var(--text-secondary);
+  --mdc-outlined-text-field-focus-label-text-color: var(--color-blue-600);
+  --mdc-outlined-text-field-input-text-color: var(--text-primary);
+  --mdc-outlined-text-field-input-text-placeholder-color: var(--text-tertiary);
+  --mdc-outlined-text-field-caret-color: var(--color-blue-600);
+  --mat-form-field-leading-icon-color: var(--text-tertiary);
+  --mat-form-field-trailing-icon-color: var(--text-tertiary);
+
+  // Dialogs — 28px radius / shadow-4 per the reference's dialog spec.
+  // max/min-width cap the CDK overlay panel itself (not just the inner
+  // content div) — without this, an unwrapped long title can stretch the
+  // panel out to 80vw and trigger a horizontal scrollbar instead of wrapping.
+  --mdc-dialog-container-shape: var(--radius-2xl);
+  --mdc-dialog-container-color: var(--surface-raised);
+  --mdc-dialog-subhead-color: var(--text-primary);
+  --mdc-dialog-supporting-text-color: var(--text-secondary);
+  --mat-dialog-container-elevation-shadow: var(--shadow-xl);
+  --mat-dialog-container-max-width: min(460px, calc(100vw - var(--space-8)));
+  --mat-dialog-container-min-width: 320px;
+
+  // Toolbar / sidenav base (component CSS also sets these directly on the
+  // host element — kept here too so any un-overridden Material chrome
+  // matches rather than falling back to stock M3 surface colors)
+  --mat-toolbar-container-background-color: var(--surface-raised);
+  --mat-toolbar-container-text-color: var(--text-primary);
+  --mat-sidenav-container-background-color: var(--color-navy-800);
+  --mat-sidenav-content-background-color: var(--surface-app);
+}
+
+// The Google Fonts stylesheet linked in index.html only supplies the
+// @font-face for "Material Icons Outlined" — it doesn't include the class
+// rule needed to actually render ligature icon names (e.g. "dashboard") as
+// glyphs instead of plain clipped text. mat-icon defaults to the
+// "material-icons" font set (see app.config.ts), so define that class here,
+// pointed at the outlined weight to match the GiveSmart icon spec.
+.material-icons {
+  font-family: 'Material Icons Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  color: var(--text-primary);
+  background: var(--surface-app);
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--duration-base) var(--ease-standard),
+              color var(--duration-base) var(--ease-standard);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+// Visible, consistent keyboard focus everywhere — not the browser default,
+// not suppressed either.
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+  border-radius: var(--radius-xs);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+p {
+  margin: 0;
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0;
+}
+
+// Respect reduced-motion preference
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+// Page-level fade used by route transitions
+.route-fade {
+  animation: routeFade var(--duration-base) var(--ease-standard);
+}
+
+@keyframes routeFade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,157 @@
+// ---------------------------------------------------------------------------
+// Design tokens — Enterprise CRM
+// Ported 1:1 from the GiveSmart "Familiar UI" design system
+// (design-system-showcase-v1.html, extracted from Designsystem.fig).
+// This is now the primary visual reference: Angular Material still drives
+// component structure/behavior/a11y (table, tabs, paginator, chips, sidenav),
+// but its visible chrome is re-pointed at these exact tokens in styles.scss
+// rather than the stock M3 palette.
+// ---------------------------------------------------------------------------
+
+:root {
+  // ── Brand Navy ──────────────────────────────────────────────────────────
+  --color-navy-900: #0d1b2a;
+  --color-navy-800: #182a43;
+  --color-navy-700: #172a43; // brand primary surface (sidebar, header)
+  --color-navy-600: #1e3a5f;
+  --color-navy-500: #2d4e6e;
+  --color-navy-400: #3d6080;
+  --color-accent: #51617a; // muted brand accent — tonal/ghost button + link text (darkened from #667895 for 4.5:1 on tint)
+  --color-accent-light: #8b94a1;
+  --text-on-navy: #eef4fa;
+  --text-on-tint: #1c6584; // text rendered on blue-100/info tint backgrounds (chips, callouts) — needs 4.5:1, plain blue-600 only clears 3.9:1
+
+  // ── Blue accent ─────────────────────────────────────────────────────────
+  --color-blue-600: #2480a6;
+  --color-blue-500: #55a8d2;
+  --color-blue-400: #8dc5e1;
+  --color-blue-300: #a9c4e2;
+  --color-blue-200: #c6e2f0;
+  --color-blue-100: #e6f1ff;
+  --color-blue-50: #f0f7ff;
+
+  // ── GiveSmart purple (product brand) ───────────────────────────────────
+  --color-purple-700: #4b35c9;
+  --color-purple-600: #5a42d6;
+  --color-purple-500: #6b4eff;
+  --color-purple-400: #8b74ff;
+  --color-purple-300: #b3a0ff;
+  --color-purple-100: #ede8ff;
+  --color-purple-50: #f5f2ff;
+
+  // ── Neutrals ────────────────────────────────────────────────────────────
+  --color-gray-900: #1a1a1a;
+  --color-gray-800: #313030;
+  --color-gray-700: #515f72;
+  --color-gray-600: #747474;
+  --color-gray-500: #979797;
+  --color-gray-400: #b9b9b9;
+  --color-gray-300: #c5cad0;
+  --color-gray-200: #dcdcdc;
+  --color-gray-100: #e5e5e5;
+  --color-gray-50: #f3f3f3;
+
+  // ── Semantic (text-tone / bg-tone pairs, as used by app-badge) ────────
+  --color-success: #1a7a4a;
+  --color-success-bg: #e6f4ed;
+  --color-warning: #7a5700;
+  --color-warning-bg: #fff3cd;
+  --color-danger: #b3261e;
+  --color-danger-bg: #ffedec;
+  --color-info: #1e40af;
+  --color-info-bg: #e2f3ff;
+
+  // ── Surfaces ────────────────────────────────────────────────────────────
+  --surface-app: #e8e5e4; // surface-high / page bg
+  --surface-raised: #ffffff; // surface-low / cards, header, sidenav panels
+  --surface-sunken: #f3feff; // surface / subtle recessed areas
+  --surface-overlay: rgba(13, 27, 42, 0.48);
+
+  // ── Text ────────────────────────────────────────────────────────────────
+  --text-primary: #313030; // on-surface
+  --text-secondary: #5e5e61; // on-surface-variant
+  --text-tertiary: #6a6a6a; // darkened from gray-500 (#979797, 2.92:1) to clear 4.5:1 — used for real content (domains, timestamps, stat labels), not just placeholders
+  --text-link: var(--color-accent);
+
+  // ── Borders ─────────────────────────────────────────────────────────────
+  --border-subtle: #e3e2e6; // outline-variant
+  --border-default: #8b929e; // darkened from outline (#c4c6d0, 1.70:1) to clear the 3:1 UI-component boundary requirement
+  --border-focus: var(--color-blue-600); // blue-600 clears 3:1 against both white and the navy sidebar; blue-500 (2.65:1) didn't
+
+  // ── Radius ──────────────────────────────────────────────────────────────
+  --radius-xs: 4px; // fields, small cards
+  --radius-sm: 8px; // inputs
+  --radius-md: 12px; // cards
+  --radius-lg: 16px; // large cards
+  --radius-xl: 20px; // pill buttons
+  --radius-2xl: 28px; // dialogs
+  --radius-full: 999px; // chips, badges
+
+  // ── Layout (unchanged) ──────────────────────────────────────────────────
+  --sidebar-width: 248px;
+  --sidebar-width-collapsed: 72px;
+  --topbar-height: 64px;
+
+  // ── Spacing scale (4px grid — same pixel values as the reference,
+  // multiplier-indexed to match existing component usage) ─────────────────
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  // ── Type ────────────────────────────────────────────────────────────────
+  --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Inter Mono', 'SFMono-Regular', Consolas, monospace;
+
+  --text-xs: 12px; // body-sm
+  --text-sm: 14px; // body-md / title-sm
+  --text-base: 14px;
+  --text-md: 16px; // title-md / body-lg
+  --text-lg: 20px; // title-lg
+  --text-xl: 24px; // headline-sm
+  --text-2xl: 32px; // headline-lg
+
+  // ── Motion (unchanged) ──────────────────────────────────────────────────
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+
+  // ── Elevation ───────────────────────────────────────────────────────────
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08); // shadow-1
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.07); // shadow-2
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08); // shadow-3
+  --shadow-xl: 0 16px 40px rgba(0, 0, 0, 0.14), 0 6px 12px rgba(0, 0, 0, 0.08); // shadow-4
+}
+
+[data-theme='dark'] {
+  --surface-app: #10151b;
+  --surface-raised: #1b232d;
+  --surface-sunken: #161d25;
+  --surface-overlay: rgba(4, 8, 14, 0.6);
+
+  --text-primary: #eef1f4;
+  --text-secondary: #b3bcc4;
+  --text-tertiary: #8f8f8f; // lightened from #7c8792 to hold 4.5:1 against dark surfaces
+
+  --border-subtle: #2a333d;
+  --border-default: #657280; // lightened from #3a4550 (1.62:1) to clear 3:1 against dark surfaces
+
+  --color-success: #6fd9a3;
+  --color-success-bg: #123423;
+  --color-warning: #f2c063;
+  --color-warning-bg: #3a2c05;
+  --color-danger: #f19b96;
+  --color-danger-bg: #3a1512;
+  --color-info: #93b4f5;
+  --color-info-bg: #142743;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.55);
+}

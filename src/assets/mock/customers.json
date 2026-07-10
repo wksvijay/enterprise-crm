@@ -1,0 +1,173 @@
+[
+  {
+    "id": "cus_1001",
+    "name": "Northwind Health Alliance",
+    "domain": "northwindhealth.org",
+    "logoInitial": "N",
+    "owner": "Priya Shah",
+    "ownerInitials": "PS",
+    "status": "active",
+    "tier": "enterprise",
+    "mrr": 18400,
+    "openDeals": 2,
+    "lastActivity": "2026-07-02",
+    "healthScore": 88,
+    "contacts": [
+      { "id": "con_1", "name": "Elena Ruiz", "title": "VP Development", "email": "eruiz@northwindhealth.org", "primary": true },
+      { "id": "con_2", "name": "Marcus Webb", "title": "Finance Director", "email": "mwebb@northwindhealth.org", "primary": false }
+    ],
+    "notes": [
+      { "id": "n1", "author": "Priya Shah", "date": "2026-06-28", "body": "Renewal conversation went well — leaning toward the multi-year plan." }
+    ],
+    "deals": [
+      { "id": "d1", "name": "Annual Gala Platform Renewal", "stage": "negotiation", "value": 42000, "closeDate": "2026-08-15" },
+      { "id": "d2", "name": "CRM Seat Expansion", "stage": "proposal", "value": 9600, "closeDate": "2026-09-01" }
+    ]
+  },
+  {
+    "id": "cus_1002",
+    "name": "Cascade Youth Foundation",
+    "domain": "cascadeyouth.org",
+    "logoInitial": "C",
+    "owner": "Tom Alvarez",
+    "ownerInitials": "TA",
+    "status": "at-risk",
+    "tier": "mid-market",
+    "mrr": 6200,
+    "openDeals": 1,
+    "lastActivity": "2026-06-19",
+    "healthScore": 41,
+    "contacts": [
+      { "id": "con_3", "name": "Jordan Blake", "title": "Executive Director", "email": "jblake@cascadeyouth.org", "primary": true }
+    ],
+    "notes": [
+      { "id": "n2", "author": "Tom Alvarez", "date": "2026-06-19", "body": "Support ticket volume up — usage dropped after key admin left. Needs re-onboarding." }
+    ],
+    "deals": [
+      { "id": "d3", "name": "Standard Plan Renewal", "stage": "prospecting", "value": 7400, "closeDate": "2026-08-30" }
+    ]
+  },
+  {
+    "id": "cus_1003",
+    "name": "Blue Harbor Museum Trust",
+    "domain": "blueharbormuseum.org",
+    "logoInitial": "B",
+    "owner": "Priya Shah",
+    "ownerInitials": "PS",
+    "status": "onboarding",
+    "tier": "smb",
+    "mrr": 1800,
+    "openDeals": 0,
+    "lastActivity": "2026-07-01",
+    "healthScore": 72,
+    "contacts": [
+      { "id": "con_4", "name": "Nina Patel", "title": "Operations Manager", "email": "npatel@blueharbormuseum.org", "primary": true }
+    ],
+    "notes": [],
+    "deals": []
+  },
+  {
+    "id": "cus_1004",
+    "name": "Summit Ridge Conservancy",
+    "domain": "summitridgeconservancy.org",
+    "logoInitial": "S",
+    "owner": "Devon Cole",
+    "ownerInitials": "DC",
+    "status": "active",
+    "tier": "mid-market",
+    "mrr": 5100,
+    "openDeals": 1,
+    "lastActivity": "2026-06-30",
+    "healthScore": 81,
+    "contacts": [
+      { "id": "con_5", "name": "Grace Kim", "title": "Development Director", "email": "gkim@summitridgeconservancy.org", "primary": true }
+    ],
+    "notes": [],
+    "deals": [
+      { "id": "d4", "name": "Fundraising Module Add-on", "stage": "proposal", "value": 3200, "closeDate": "2026-07-25" }
+    ]
+  },
+  {
+    "id": "cus_1005",
+    "name": "Fernbrook Arts Collective",
+    "domain": "fernbrookarts.org",
+    "logoInitial": "F",
+    "owner": "Tom Alvarez",
+    "ownerInitials": "TA",
+    "status": "churned",
+    "tier": "smb",
+    "mrr": 0,
+    "openDeals": 0,
+    "lastActivity": "2026-04-11",
+    "healthScore": 12,
+    "contacts": [
+      { "id": "con_6", "name": "Sam Ortega", "title": "Founder", "email": "sam@fernbrookarts.org", "primary": true }
+    ],
+    "notes": [
+      { "id": "n3", "author": "Tom Alvarez", "date": "2026-04-11", "body": "Cancelled after board restructuring — flagged as potential win-back in Q1." }
+    ],
+    "deals": []
+  },
+  {
+    "id": "cus_1006",
+    "name": "Harborline Literacy Project",
+    "domain": "harborlineliteracy.org",
+    "logoInitial": "H",
+    "owner": "Devon Cole",
+    "ownerInitials": "DC",
+    "status": "active",
+    "tier": "enterprise",
+    "mrr": 24700,
+    "openDeals": 3,
+    "lastActivity": "2026-07-03",
+    "healthScore": 93,
+    "contacts": [
+      { "id": "con_7", "name": "Rachel Nguyen", "title": "CEO", "email": "rnguyen@harborlineliteracy.org", "primary": true },
+      { "id": "con_8", "name": "Adam Cross", "title": "Director of Data", "email": "across@harborlineliteracy.org", "primary": false }
+    ],
+    "notes": [],
+    "deals": [
+      { "id": "d5", "name": "Enterprise Tier Upgrade", "stage": "negotiation", "value": 68000, "closeDate": "2026-08-05" }
+    ]
+  },
+  {
+    "id": "cus_1007",
+    "name": "Willow Creek Animal Rescue",
+    "domain": "willowcreekrescue.org",
+    "logoInitial": "W",
+    "owner": "Priya Shah",
+    "ownerInitials": "PS",
+    "status": "onboarding",
+    "tier": "smb",
+    "mrr": 900,
+    "openDeals": 0,
+    "lastActivity": "2026-06-27",
+    "healthScore": 65,
+    "contacts": [
+      { "id": "con_9", "name": "Beth Lawson", "title": "Volunteer Coordinator", "email": "beth@willowcreekrescue.org", "primary": true }
+    ],
+    "notes": [],
+    "deals": []
+  },
+  {
+    "id": "cus_1008",
+    "name": "Redstone Community Fund",
+    "domain": "redstonecommunityfund.org",
+    "logoInitial": "R",
+    "owner": "Devon Cole",
+    "ownerInitials": "DC",
+    "status": "active",
+    "tier": "mid-market",
+    "mrr": 7300,
+    "openDeals": 1,
+    "lastActivity": "2026-06-25",
+    "healthScore": 76,
+    "contacts": [
+      { "id": "con_10", "name": "Omar Farid", "title": "Grants Manager", "email": "ofarid@redstonecommunityfund.org", "primary": true }
+    ],
+    "notes": [],
+    "deals": [
+      { "id": "d6", "name": "Grant Tracking Add-on", "stage": "won", "value": 4100, "closeDate": "2026-06-10" }
+    ]
+  }
+]
